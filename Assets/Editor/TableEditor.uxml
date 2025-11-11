@@ -1,3 +1,13 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="RootElement" style="flex-grow: 1;" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/Toolbar.uss?fileID=7433441132597879392&amp;guid=7e2552113cb00174380dd2d1b5027888&amp;type=3#Toolbar" />
+    <ui:VisualElement name="Root" style="flex-grow: 1; background-color: rgb(95, 95, 95); flex-direction: column;">
+        <ui:VisualElement name="Toolbar" class="background" style="height: auto;">
+            <uie:Toolbar style="min-height: auto; max-height: none; height: auto;">
+                <uie:ToolbarPopupSearchField name="FileFinder" placeholder-text="Search for JSON..." />
+                <uie:ToolbarSpacer />
+                <uie:ToolbarButton text="Save" name="SaveButton" />
+            </uie:Toolbar>
+        </ui:VisualElement>
+        <ui:VisualElement name="Table" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; max-height: none;" />
+    </ui:VisualElement>
 </ui:UXML>
