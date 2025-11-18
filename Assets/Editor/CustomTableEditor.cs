@@ -62,6 +62,21 @@ public class CustomTableEditor : EditorWindow
         if (evt.newValue is TextAsset)
         {
             json = evt.newValue as TextAsset;
+
+            VisualElement root = rootVisualElement;
+            VisualElement table = root.Q<VisualElement>("Table");
+            if (table != null)
+            {
+                if (json != null)
+                {
+                    VisualElement label = new Label(json.text);
+                    if (table.Q<Label>() != null)
+                    {
+                        table.Remove(table.Q<Label>());
+                    }
+                    table.Add(label);
+                }
+            }
         }
         Debug.Log($"ObjectField value changed to: {evt.newValue?.name}");
         
