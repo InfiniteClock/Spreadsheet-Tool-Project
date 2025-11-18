@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/Editor/Toolbar.uss?fileID=7433441132597879392&amp;guid=7e2552113cb00174380dd2d1b5027888&amp;type=3#Toolbar" />
     <ui:VisualElement name="Root" style="flex-grow: 1; background-color: rgb(95, 95, 95); flex-direction: column;">
         <ui:VisualElement name="Toolbar" class="background" style="height: auto;">
-            <uie:Toolbar style="min-height: auto; max-height: none; height: auto;">
-                <uie:ToolbarPopupSearchField name="FileFinder" placeholder-text="Search for JSON..." />
+            <uie:Toolbar name="Bar" style="min-height: auto; max-height: none; height: auto;">
+                <uie:ObjectField label="Selected JSON" name="JSONSelection" data-source-type="SimpleJSON.JSON, Unity.VisualStudio.Editor" type="UnityEngine.TextAsset, UnityEngine.CoreModule" />
                 <uie:ToolbarSpacer />
                 <uie:ToolbarButton text="Save" name="SaveButton" />
             </uie:Toolbar>
