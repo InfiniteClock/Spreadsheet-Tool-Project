@@ -1,0 +1,144 @@
+{
+  "Crops": {
+    "Turnip": {
+      "ID": 1001,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Red Rose": {
+      "ID": 1002,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Cucumber": {
+      "ID": 1003,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Purple Tulip": {
+      "ID": 1004,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Tomato": {
+      "ID": 1005,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Melon": {
+      "ID": 1006,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Eggplant": {
+      "ID": 1007,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Lemon": {
+      "ID": 1008,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Pineapple": {
+      "ID": 1009,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Rice": {
+      "ID": 1010,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Wheat": {
+      "ID": 1011,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Grapes": {
+      "ID": 1012,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Strawberry": {
+      "ID": 1013,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Cassava": {
+      "ID": 1014,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Potato": {
+      "ID": 1015,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Coffee": {
+      "ID": 1016,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Orange": {
+      "ID": 1017,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Avocado": {
+      "ID": 1018,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Corn": {
+      "ID": 1019,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    },
+    "Sunflower": {
+      "ID": 1020,
+      "Spritelist": null,
+      "Growth Stages": 5,
+      "Color": null,
+      "Growth Days": null
+    }
+  }
+}
