@@ -9,6 +9,7 @@ public class CustomTableEditor : EditorWindow
 {
     [SerializeField] private VisualTreeAsset visualTree;
     private ObjectField objField;
+    private Button saveButton;
 
     public TextAsset json;
 
@@ -28,14 +29,20 @@ public class CustomTableEditor : EditorWindow
         // Each editor window contains a root VisualElement object
         VisualElement root = rootVisualElement;
 
+        // Get access to each important element in the tool
         VisualElement toolbar = root.Q<VisualElement>("Toolbar");
         Toolbar bar = toolbar.Q<Toolbar>("Bar");
         objField = bar.Q<ObjectField>("JSONSelection");
+        saveButton = bar.Q<Button>("SaveButton");
+
 
         if (objField != null)
         {
             objField.RegisterValueChangedCallback(OnObjectFieldValueChanged);
-            Debug.Log("Callback Registered: objField Value Change");
+        }
+        if (saveButton != null)
+        {
+            saveButton.clicked += OnSaveButtonPressed;
         }
 
         // Access the Table element and begin filling it if not null
@@ -84,23 +91,6 @@ public class CustomTableEditor : EditorWindow
                         return;
                     }
 
-                    foreach(CropDataJSON jsonData in wrapper.Crops)
-                    {
-                        
-                        Crop cropData = ScriptableObject.CreateInstance<Crop>();
-                        cropData.itemName = jsonData.itemName;
-                        cropData.id = jsonData.id;
-                        cropData.growthStages = jsonData.growthStages;
-                        cropData.growthDays = jsonData.growthDays;
-                        string assetPath = $"Assets/CreatedScriptableObjects/{jsonData.itemName}.asset";
-                        
-                        AssetDatabase.CreateAsset(cropData, assetPath);
-                    }
-
-                    AssetDatabase.SaveAssets();
-                    AssetDatabase.Refresh();
-                    Debug.Log("Scriptable Objects created successfully!");
-
                     /*
                     // Filler that creates a label with all of the json text in it
                     VisualElement label = new Label(json.text);
@@ -120,12 +110,45 @@ public class CustomTableEditor : EditorWindow
         
     }
 
+    // Saves the scriptable objects from the json file
+    private void OnSaveButtonPressed()
+    {
+        if (json != null)
+        {
+            string jsonString = json.text;
+            CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(jsonString);
+
+            Debug.Log(wrapper.Crops.Count);
+
+            if (wrapper == null || wrapper.Crops == null)
+            {
+                Debug.Log("Failed to deserialize json or crops list is null");
+                return;
+            }
+
+            foreach (CropDataJSON jsonData in wrapper.Crops)
+            {
+
+                Crop cropData = ScriptableObject.CreateInstance<Crop>();
+                cropData.itemName = jsonData.itemName;
+                cropData.id = jsonData.id;
+                cropData.growthStages = jsonData.growthStages;
+                cropData.growthDays = jsonData.growthDays;
+                string assetPath = $"Assets/CreatedScriptableObjects/{jsonData.itemName}.asset";
+
+                AssetDatabase.CreateAsset(cropData, assetPath);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("Scriptable Objects created successfully!");
+        }
+    }
     void OnDisable()
     {
-        if (objField != null)
-        {
-            // Unregister callback to prevent future errors when opening the window again
-            objField.UnregisterValueChangedCallback(OnObjectFieldValueChanged);
-        }
+        // Unregister callbacks to prevent future errors when opening the window again
+        if (objField != null) objField.UnregisterValueChangedCallback(OnObjectFieldValueChanged);
+        if (saveButton != null) saveButton.clicked -= OnSaveButtonPressed;
+        
     }
 }
