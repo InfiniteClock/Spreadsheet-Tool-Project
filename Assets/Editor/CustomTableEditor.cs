@@ -115,6 +115,7 @@ public class CustomTableEditor : EditorWindow
     {
         if (json != null)
         {
+            // Using a Wrapper class, Json.Utility can create multiple objects from one file
             string jsonString = json.text;
             CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(jsonString);
 
@@ -125,7 +126,7 @@ public class CustomTableEditor : EditorWindow
                 Debug.Log("Failed to deserialize json or crops list is null");
                 return;
             }
-
+            // Uses a list of dummy serializable classes in the wrapper to create each SO and populate it with values
             foreach (CropDataJSON jsonData in wrapper.Crops)
             {
 
@@ -134,11 +135,15 @@ public class CustomTableEditor : EditorWindow
                 cropData.id = jsonData.id;
                 cropData.growthStages = jsonData.growthStages;
                 cropData.growthDays = jsonData.growthDays;
+                
+                // Identifies an asset path to save these SOs in. Will make this user-created in future
                 string assetPath = $"Assets/CreatedScriptableObjects/{jsonData.itemName}.asset";
 
+                // This both creates new files and overwrites existing files within the assetpath.
                 AssetDatabase.CreateAsset(cropData, assetPath);
             }
 
+            // Save to and refresh Unity's Assets with the above changes 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("Scriptable Objects created successfully!");
