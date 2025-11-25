@@ -86,13 +86,14 @@ public class CustomTableEditor : EditorWindow
 
                     foreach(CropDataJSON jsonData in wrapper.Crops)
                     {
+                        
                         Crop cropData = ScriptableObject.CreateInstance<Crop>();
                         cropData.itemName = jsonData.itemName;
                         cropData.id = jsonData.id;
                         cropData.growthStages = jsonData.growthStages;
                         cropData.growthDays = jsonData.growthDays;
-
-                        string assetPath = AssetDatabase.GenerateUniqueAssetPath("Assets/CreatedScriptableObjects/" + jsonData.itemName + ".asset");
+                        string assetPath = $"Assets/CreatedScriptableObjects/{jsonData.itemName}.asset";
+                        
                         AssetDatabase.CreateAsset(cropData, assetPath);
                     }
 
