@@ -1,164 +1,164 @@
 {
-  "Crops": {
-    "Turnip": {
-      "itemName": "Turnip",
-      "id": 1001,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Red Rose": {
-      "itemName": "Red Rose",
-      "id": 1002,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Cucumber": {
-      "itemName": "Cucumber",
-      "id": 1003,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Purple Tulip": {
-      "itemName": "Purple Tulip",
-      "id": 1004,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Tomato": {
-      "itemName": "Tomato",
-      "id": 1005,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Melon": {
-      "itemName": "Melon",
-      "id": 1006,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Eggplant": {
-      "itemName": "Eggplant",
-      "id": 1007,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Lemon": {
-      "itemName": "Lemon",
-      "id": 1008,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Pineapple": {
-      "itemName": "Pineapple",
-      "id": 1009,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Rice": {
-      "itemName": "Rice",
-      "id": 1010,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Wheat": {
-      "itemName": "Wheat",
-      "id": 1011,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Grapes": {
-      "itemName": "Grapes",
-      "id": 1012,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Strawberry": {
-      "itemName": "Strawberry",
-      "id": 1013,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Cassava": {
-      "itemName": "Cassava",
-      "id": 1014,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Potato": {
-      "itemName": "Potato",
-      "id": 1015,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Coffee": {
-      "itemName": "Coffee",
-      "id": 1016,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Orange": {
-      "itemName": "Orange",
-      "id": 1017,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Avocado": {
-      "itemName": "Avocado",
-      "id": 1018,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Corn": {
-      "itemName": "Corn",
-      "id": 1019,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    },
-    "Sunflower": {
-      "itemName": "Sunflower",
-      "id": 1020,
-      "spriteList": null,
-      "growthStages": 5,
-      "color": null,
-      "growthDays": null
-    }
+  "Crops": [
+  {
+    "itemName": "Turnip",
+    "id": 1001,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Red Rose",
+    "id": 1002,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Cucumber",
+    "id": 1003,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Purple Tulip",
+    "id": 1004,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Tomato",
+    "id": 1005,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Melon",
+    "id": 1006,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Eggplant",
+    "id": 1007,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Lemon",
+    "id": 1008,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Pineapple",
+    "id": 1009,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Rice",
+    "id": 1010,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Wheat",
+    "id": 1011,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Grapes",
+    "id": 1012,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Strawberry",
+    "id": 1013,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Cassava",
+    "id": 1014,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Potato",
+    "id": 1015,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Coffee",
+    "id": 1016,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Orange",
+    "id": 1017,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Avocado",
+    "id": 1018,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Corn",
+    "id": 1019,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
+  },
+  {
+    "itemName": "Sunflower",
+    "id": 1020,
+    "spriteList": null,
+    "growthStages": 5,
+    "color": null,
+    "growthDays": null
   }
+  ]
 }
