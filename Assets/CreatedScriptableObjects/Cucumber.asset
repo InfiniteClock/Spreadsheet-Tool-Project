@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cucumber
   id: 1003
-  spritelist: []
+  sprite: {fileID: 0}
   growthStages: 5
   color: {r: 0, g: 0, b: 0, a: 0}
   growthDays: 0

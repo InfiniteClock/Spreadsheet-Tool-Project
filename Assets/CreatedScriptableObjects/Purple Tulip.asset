@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Purple Tulip
   id: 1004
-  spritelist: []
+  sprite: {fileID: 0}
   growthStages: 5
   color: {r: 0, g: 0, b: 0, a: 0}
   growthDays: 0

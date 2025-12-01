@@ -14,6 +14,8 @@ public class CustomTableEditor : EditorWindow
     public TextAsset json;
     private string currentJsonString;
 
+    private List<Crop> cropList;
+
     [MenuItem("Window/Table Editor")]
     public static void ShowExample()
     {
@@ -80,6 +82,8 @@ public class CustomTableEditor : EditorWindow
                 if (wrapper == null || wrapper.Crops == null)
                 {
                     Debug.Log("Failed to deserialize json or crops list is null");
+                    // Erases the temp list if there is no json file
+                    cropList = new List<Crop>();
                     return;
                 }
                 // Create the MultiColumnListView that will be our table
@@ -149,8 +153,8 @@ public class CustomTableEditor : EditorWindow
                     stretchable = true
                 });
 
-                // Create a dummy list to hold the SO's we are going to make from the JSON
-                List<Crop> cropList = new List<Crop>();
+                // Create a temporary list to hold the SO's we are going to make from the JSON
+                cropList = new List<Crop>();
 
                 // Assign json data values to each SO in the list, then assign it to cropList
                 foreach(CropDataJSON jsonData in wrapper.Crops)
@@ -189,26 +193,32 @@ public class CustomTableEditor : EditorWindow
 
             if (wrapper == null || wrapper.Crops == null)
             {
-                Debug.Log("Failed to deserialize json or crops list is null");
+                Debug.Log("Json filed or crops list is null");
                 return;
             }
 
-            foreach (CropDataJSON jsonData in wrapper.Crops)
+            string cropString = "{\t \"Crops\" : [";
+            for (int i = 0; i < cropList.Count; i++)
             {
+                Crop crop = cropList[i];
+                string assetPath = $"Assets/CreatedScriptableObjects/{crop.itemName}.asset";
 
-                Crop cropData = ScriptableObject.CreateInstance<Crop>();
-                cropData.itemName = jsonData.itemName;
-                cropData.id = jsonData.id;
-                cropData.growthStages = jsonData.growthStages;
-                cropData.growthDays = jsonData.growthDays;
-                string assetPath = $"Assets/CreatedScriptableObjects/{jsonData.itemName}.asset";
+                AssetDatabase.CreateAsset(crop, assetPath);
 
-                AssetDatabase.CreateAsset(cropData, assetPath);
+                cropString += JsonUtility.ToJson(crop, true);
+                if (i < cropList.Count - 1) cropString += ",\t";
             }
+            cropString += " \t] \t}";
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("Scriptable Objects created successfully!");
+            
+            string path = AssetDatabase.GetAssetPath(json);
+            Debug.Log($"{path}");
+            File.WriteAllText(path, cropString);
+
+            
         }
     }
     void OnDisable()
