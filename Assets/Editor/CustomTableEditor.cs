@@ -82,14 +82,18 @@ public class CustomTableEditor : EditorWindow
                     Debug.Log("Failed to deserialize json or crops list is null");
                     return;
                 }
-
+                // Create the MultiColumnListView that will be our table
                 MultiColumnListView table = new MultiColumnListView 
                 {   
+                    // The binding path determines the list it will try to access from wrapper
                     bindingPath = "Crops", 
-                    showBoundCollectionSize = false, 
+                    // Whether the list displays the number of items in it
+                    showBoundCollectionSize = true, 
+                    // Don't fully understand this value yet, but it allows for scrolling and resizing
                     virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight
                 };
-
+                // Each column denotes a single variable within the scriptableObject "Crop"
+                // The cell type must be compatible with the data type of the variable it is bound to
                 table.columns.Add(new Column
                 {
                     name = "itemName",
@@ -126,22 +130,29 @@ public class CustomTableEditor : EditorWindow
                     minWidth = 50,
                     stretchable = true
                 });
-                table.columns.Add(new Column { 
+                table.columns.Add(new Column
+                {
                     name = "color",
                     title = "Color Adjustment",
                     makeCell = () => new ColorField(),
                     bindCell = (element, index) => ((ColorField)element).value = ((Crop)table.itemsSource[index]).color,
-                    minWidth = 75, 
-                    stretchable = true });
-                table.columns.Add(new Column { 
+                    minWidth = 75,
+                    stretchable = true
+                });
+                table.columns.Add(new Column
+                {
                     name = "growthDays",
                     title = "Days to Grow",
                     makeCell = () => new IntegerField(),
                     bindCell = (element, index) => ((IntegerField)element).value = ((Crop)table.itemsSource[index]).growthDays,
-                    minWidth = 50, 
-                    stretchable = true });
+                    minWidth = 50,
+                    stretchable = true
+                });
 
+                // Create a dummy list to hold the SO's we are going to make from the JSON
                 List<Crop> cropList = new List<Crop>();
+
+                // Assign json data values to each SO in the list, then assign it to cropList
                 foreach(CropDataJSON jsonData in wrapper.Crops)
                 {
                     Crop cropData = ScriptableObject.CreateInstance<Crop>();
@@ -152,23 +163,14 @@ public class CustomTableEditor : EditorWindow
 
                     cropList.Add(cropData);
                 }
+
+                // Pass through the list to the table to populate it with data
                 table.itemsSource = cropList;
 
+                // Refresh the UI 
                 table.RefreshItems();
 
-                /*
-                // Filler that creates a label with all of the json text in it
-                VisualElement label = new Label(json.text);
-
-                // Remove any existing labels from Table
-                if (table.Q<Label>() != null)
-                {
-                    table.Remove(table.Q<Label>());
-                }
-
-                // Adds the new element to the Table visual element
-                table.Add(label);*/
-
+                // Add the table to the editor window
                 root.Add(table);
             }
             
