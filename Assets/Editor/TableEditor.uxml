@@ -8,6 +8,5 @@
                 <uie:ToolbarButton text="Save" name="SaveButton" />
             </uie:Toolbar>
         </ui:VisualElement>
-        <ui:VisualElement name="Table" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; max-height: none;" />
     </ui:VisualElement>
 </ui:UXML>

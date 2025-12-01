@@ -1,9 +1,9 @@
 using System.IO;
 using UnityEditor;
-using UnityEditor.Overlays;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class CustomTableEditor : EditorWindow
 {
@@ -12,7 +12,7 @@ public class CustomTableEditor : EditorWindow
     private Button saveButton;
 
     public TextAsset json;
-
+    private string currentJsonString;
 
     [MenuItem("Window/Table Editor")]
     public static void ShowExample()
@@ -45,17 +45,6 @@ public class CustomTableEditor : EditorWindow
             saveButton.clicked += OnSaveButtonPressed;
         }
 
-        // Access the Table element and begin filling it if not null
-        VisualElement table = root.Q<VisualElement>("Table");
-        if (table != null)
-        {
-            if (json != null)
-            {
-                VisualElement label = new Label(json.text);
-            }
-        }
-
-
         /*
         // VisualElements objects can contain other VisualElement following a tree hierarchy.
         // This creates a label and adds it to the root
@@ -71,40 +60,119 @@ public class CustomTableEditor : EditorWindow
         // Example: If you expect a TextAsset, cast it: TextAsset assignedGameObject = evt.newValue as TextAsset;
         if (evt.newValue is TextAsset)
         {
+            // Get the newly input Text Asset file and cache the string version of it
             json = evt.newValue as TextAsset;
+            currentJsonString = json.text;
 
             // Get the table visual element from the root for editing
             VisualElement root = rootVisualElement;
-            VisualElement table = root.Q<VisualElement>("Table");
-            if (table != null)
+            MultiColumnListView oldTable = root.Q<MultiColumnListView>();
+
+            // Removes old instances of the table
+            if (oldTable != null) 
+                root.Remove(oldTable);
+
+            if (json != null)
             {
-                if (json != null)
+                string jsonString = json.text;
+                CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(jsonString);
+
+                if (wrapper == null || wrapper.Crops == null)
                 {
-                    string jsonString = json.text;
-                    CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(jsonString);
-
-                    Debug.Log(wrapper.Crops.Count);
-
-                    if (wrapper == null || wrapper.Crops == null)
-                    {
-                        Debug.Log("Failed to deserialize json or crops list is null");
-                        return;
-                    }
-
-                    /*
-                    // Filler that creates a label with all of the json text in it
-                    VisualElement label = new Label(json.text);
-                    
-                    // Remove any existing labels from Table
-                    if (table.Q<Label>() != null)
-                    {
-                        table.Remove(table.Q<Label>());
-                    }
-
-                    // Adds the new element to the Table visual element
-                    table.Add(label);*/
+                    Debug.Log("Failed to deserialize json or crops list is null");
+                    return;
                 }
+
+                MultiColumnListView table = new MultiColumnListView 
+                {   
+                    bindingPath = "Crops", 
+                    showBoundCollectionSize = false, 
+                    virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight
+                };
+
+                table.columns.Add(new Column
+                {
+                    name = "itemName",
+                    title = "Item Name",
+                    makeCell = () => new TextField(),
+                    bindCell = (element, index) => ((TextField)element).value = ((Crop)table.itemsSource[index]).itemName,
+                    minWidth = 50,
+                    stretchable = true
+                });
+                table.columns.Add(new Column
+                {
+                    name = "id",
+                    title = "Item ID",
+                    makeCell = () => new IntegerField(),
+                    bindCell = (element, index) => ((IntegerField)element).value = ((Crop)table.itemsSource[index]).id,
+                    minWidth = 50,
+                    stretchable = true
+                });
+                table.columns.Add(new Column
+                {
+                    name = "sprite",
+                    title = "Sprites",
+                    makeCell = () => new ObjectField(),
+                    bindCell = (element, index) => ((ObjectField)element).value = ((Crop)table.itemsSource[index]).sprite,
+                    minWidth = 75,
+                    stretchable = true
+                });
+                table.columns.Add(new Column
+                {
+                    name = "growthStages",
+                    title = "Growth Stages",
+                    makeCell = () => new IntegerField(),
+                    bindCell = (element, index) => ((IntegerField)element).value = ((Crop)table.itemsSource[index]).growthStages,
+                    minWidth = 50,
+                    stretchable = true
+                });
+                table.columns.Add(new Column { 
+                    name = "color",
+                    title = "Color Adjustment",
+                    makeCell = () => new ColorField(),
+                    bindCell = (element, index) => ((ColorField)element).value = ((Crop)table.itemsSource[index]).color,
+                    minWidth = 75, 
+                    stretchable = true });
+                table.columns.Add(new Column { 
+                    name = "growthDays",
+                    title = "Days to Grow",
+                    makeCell = () => new IntegerField(),
+                    bindCell = (element, index) => ((IntegerField)element).value = ((Crop)table.itemsSource[index]).growthDays,
+                    minWidth = 50, 
+                    stretchable = true });
+
+                List<Crop> cropList = new List<Crop>();
+                foreach(CropDataJSON jsonData in wrapper.Crops)
+                {
+                    Crop cropData = ScriptableObject.CreateInstance<Crop>();
+                    cropData.itemName = jsonData.itemName;
+                    cropData.id = jsonData.id;
+                    cropData.growthStages = jsonData.growthStages;
+                    cropData.growthDays = jsonData.growthDays;
+
+                    cropList.Add(cropData);
+                }
+                table.itemsSource = cropList;
+
+                table.RefreshItems();
+
+                /*
+                // Filler that creates a label with all of the json text in it
+                VisualElement label = new Label(json.text);
+
+                // Remove any existing labels from Table
+                if (table.Q<Label>() != null)
+                {
+                    table.Remove(table.Q<Label>());
+                }
+
+                // Adds the new element to the Table visual element
+                table.Add(label);*/
+
+                root.Add(table);
             }
+            
+            
         }
         Debug.Log($"ObjectField value changed to: {evt.newValue?.name}");
         
@@ -115,10 +183,7 @@ public class CustomTableEditor : EditorWindow
     {
         if (json != null)
         {
-            string jsonString = json.text;
-            CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(jsonString);
-
-            Debug.Log(wrapper.Crops.Count);
+            CropDataListWrapper wrapper = JsonUtility.FromJson<CropDataListWrapper>(currentJsonString);
 
             if (wrapper == null || wrapper.Crops == null)
             {
