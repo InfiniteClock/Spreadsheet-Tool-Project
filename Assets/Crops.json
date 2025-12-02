@@ -6,12 +6,12 @@
     },
     "growthStages": 5,
     "color": {
-        "r": 0.0,
+        "r": 1.0,
         "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
+        "b": 0.8538856506347656,
+        "a": 1.0
     },
-    "growthDays": 0
+    "growthDays": 6
 },	{
     "itemName": "Red Rose",
     "id": 1002,
@@ -20,12 +20,12 @@
     },
     "growthStages": 5,
     "color": {
-        "r": 0.0,
+        "r": 1.0,
         "g": 0.0,
         "b": 0.0,
-        "a": 0.0
+        "a": 1.0
     },
-    "growthDays": 0
+    "growthDays": 7
 },	{
     "itemName": "Cucumber",
     "id": 1003,
@@ -34,12 +34,12 @@
     },
     "growthStages": 5,
     "color": {
-        "r": 0.0,
-        "g": 0.0,
+        "r": 0.1895357370376587,
+        "g": 1.0,
         "b": 0.0,
-        "a": 0.0
+        "a": 1.0
     },
-    "growthDays": 0
+    "growthDays": 8
 },	{
     "itemName": "Purple Tulip",
     "id": 1004,
